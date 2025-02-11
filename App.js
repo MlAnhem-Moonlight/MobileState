@@ -1,33 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, FlatList, SafeAreaView } from 'react-native';
-import BoxText from './components/CustomText';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, SectionList, Button } from 'react-native';
+import BoxText from './components/ButtonCust';
+import { useState } from 'react';
 
 export default function App() {
+  const [backgroundColor,setBackgroundColor] = useState('rgb(255, 255, 255)');
 
-  const Data =
-  [
-    {id:'1',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'2',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'3',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'4',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'5',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'6',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'7',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'8',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'9',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'10',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'11',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-    {id:'12',name:'lmao',discription:'Con vit nha hang xom rat ngon',date:'7/1/2022',time:'10:20'},
-  ]
+  const handleClick = (colors) =>{
+    setBackgroundColor(colors)
+  }
 
   return (
 
-    <SafeAreaView style={styles.container}>
-        <FlatList style={styles.list}
-        data={Data}
-        keyExtractor={(item)=>item.ID}
-        renderItem={({item})=> (<BoxText text1={item.name} text2={item.discription} text3={item.date} text4={item.time}/>)}
-        />                
+    <SafeAreaView style={[styles.container,{backgroundColor:backgroundColor}]} edges={['top']}> 
+      <BoxText text1 = "GREEN" text2 = 'rgb(255, 255, 255)' text3 = 'rgb(1, 83, 5)' onPress = {() => handleClick('rgb(1, 83, 5)')}/>
+      <BoxText text1 = "BLUE" text2 = 'rgb(255, 255, 255)' text3 = 'rgb(11, 0, 160)' onPress = {() => handleClick('rgb(11, 0, 160)')}/>
+      <BoxText text1 = "BROWN" text2 = 'rgb(255, 255, 255)' text3 = 'rgb(88, 57, 16)' onPress = {() => handleClick('rgb(88, 57, 16)')}/>
+      <BoxText text1 = "YELLOW" text2 = 'rgb(0, 0, 0)' text3 = 'rgb(238, 255, 0)' onPress = {() => handleClick('rgb(238, 255, 0)')}/>
+      <BoxText text1 = "RED" text2 = 'rgb(255, 255, 255)' text3 = 'rgb(255, 0, 0)' onPress = {() => handleClick('rgb(255, 0, 0)')}/>
+      <BoxText text1 = "BLACK" text2 = 'rgb(255, 255, 255)' text3 = 'rgb(0, 0, 0)' onPress = {() => handleClick('rgb(0, 0, 0)')}/>
     </SafeAreaView>
   );
 }
@@ -35,12 +26,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
-  list:
+  container_Button:
   {
-    top:20,
+    flex:1,
+    margin:10,
   }
+
 });
